@@ -1,0 +1,33 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+
+## Scott Wiersdorf
+## Created: Thu Mar  7 14:19:38 MST 2013
+
+## list files that do not appear in the source directory
+
+## usage: subdir src glob
+
+## examples:
+##
+##   subdir good-files t/*.t
+##
+## this will list files from the glob t/*.t that do not exist in the
+## good-files directory.
+
+my $src = shift
+  or die "usage: $0 src glob\n";
+
+opendir my $src_dh, $src
+  or die "Unable to read directory '$src': $!\n";
+my %contents = map { $_ => 1 } readdir $src_dh;
+close $src_dh;
+
+for my $targ ( @ARGV ) {
+    (my $file = $targ) =~ s{^.*/}{};
+    next if $contents{$file};
+    print $targ . "\n";
+}
+
+exit;
