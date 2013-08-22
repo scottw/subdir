@@ -1,6 +1,6 @@
 # subdir #
 
-Like `ls -1` but subtracts matching files in a directory you specify.
+Like `ls -1 *.py` but subtracts matching files in a directory you specify.
 
 ## usage ##
 
@@ -9,7 +9,8 @@ Like `ls -1` but subtracts matching files in a directory you specify.
 ## description ##
 
 All files from `glob/*.py` will be listed as long as the file doesn't
-already exist in `srcdir`.
+already exist in `srcdir`. In other words, "list all matching
+`glob/*.py` *except* for those found in `srcdir`".
 
 ## example ##
 

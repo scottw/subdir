@@ -7,17 +7,19 @@ use warnings;
 
 ## list files that do not appear in the source directory
 
-## usage: subdir src glob
+## usage: subdir del-src files-glob
+
+## description: lists files-glob unless the glob matches a file found in del-src
 
 ## examples:
 ##
-##   subdir good-files t/*.t
+##   subdir dir t/*.t
 ##
-## this will list files from the glob t/*.t that do not exist in the
-## good-files directory.
+## this will list files from the glob `t/*.t` that do not exist in the
+## `dir` directory.
 
 my $src = shift
-  or die "usage: $0 src glob\n";
+  or die "usage: $0 del-src files-glob\n";
 
 opendir my $src_dh, $src
   or die "Unable to read directory '$src': $!\n";
