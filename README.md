@@ -4,13 +4,17 @@ Like `ls -1 *.py` but subtracts matching files in a directory you specify.
 
 ## usage ##
 
-    subdir srcdir glob/*.py
+    subdir srcdir files
 
 ## description ##
 
-All files from `glob/*.py` will be listed as long as the file doesn't
-already exist in `srcdir`. In other words, "list all matching
-`glob/*.py` *except* for those found in `srcdir`".
+All files matching `files` will be listed as long as the file doesn't
+already exist in `srcdir`. In other words, "list all matching `files`
+*except* for those found in `srcdir`".
+
+If we were using sets, you could think of it as:
+
+    files - srcdir = subdir
 
 ## example ##
 
@@ -27,7 +31,8 @@ and `srcdir` had these files in it:
     srcdir/baz.py
     srcdir/foo.py
 
-then the output of `subdir srcdir glob/*.py` will be:
+then the output of `subdir srcdir glob/*.py` will be `glob/*.py -
+srcdir`, or:
 
     glob/bar.py
     glob/blech.py
